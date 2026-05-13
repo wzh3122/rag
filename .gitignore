@@ -1,0 +1,31 @@
+.env
+.env.*
+!.env.example
+
+# data and databases
+data/
+!data/
+data/*
+!data/.gitkeep
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+
+# logs and traces
+logs/
+*.log
+trace/
+
+# Python
+__pycache__/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

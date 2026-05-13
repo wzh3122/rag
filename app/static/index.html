@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>大陆法律 RAG 助手</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="会话侧栏">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">律</div>
+          <div>
+            <h1>法律 RAG</h1>
+            <p>中国大陆一般法律信息参考</p>
+          </div>
+        </div>
+
+        <button class="new-chat" id="newChatButton" type="button">
+          <span aria-hidden="true">＋</span>
+          新对话
+        </button>
+
+        <section class="panel">
+          <h2>当前会话</h2>
+          <dl class="session-meta">
+            <div>
+              <dt>Session</dt>
+              <dd id="sessionId">未创建</dd>
+            </div>
+            <div>
+              <dt>状态</dt>
+              <dd id="sessionStatus">待提问</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <h2>设置</h2>
+          <label class="field">
+            <span>法律领域</span>
+            <select id="domainSelect">
+              <option value="">自动识别</option>
+              <option value="labor">劳动争议</option>
+              <option value="contract">合同纠纷</option>
+              <option value="marriage_family">婚姻家事</option>
+              <option value="tort">侵权责任</option>
+              <option value="private_lending">民间借贷</option>
+              <option value="housing_lease">房屋租赁</option>
+              <option value="consumer_rights">消费维权</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>地区</span>
+            <input id="regionInput" type="text" placeholder="例如: 广东" autocomplete="off" />
+          </label>
+          <label class="toggle">
+            <input id="streamToggle" type="checkbox" checked />
+            <span>阶段流式响应</span>
+          </label>
+        </section>
+
+        <section class="notice">
+          <h2>边界</h2>
+          <p>回答仅作一般法律信息参考, 不构成正式法律意见。空法规库时不会编造法条、案例或来源。</p>
+        </section>
+      </aside>
+
+      <main class="chat">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Mainland Legal Agent RAG</p>
+            <h2>对话</h2>
+          </div>
+          <div class="top-actions">
+            <button id="clearButton" class="ghost-button" type="button" title="清空页面消息">清空</button>
+          </div>
+        </header>
+
+        <section class="messages" id="messages" aria-live="polite">
+          <article class="message assistant">
+            <div class="avatar">律</div>
+            <div class="bubble">
+              <div class="message-head">
+                <strong>法律 RAG 助手</strong>
+                <span>就绪</span>
+              </div>
+              <p>请描述你的问题。你可以补充地区、证据、时间线和希望达到的结果；如果事实太少，我会先追问。</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="composer-wrap">
+          <div class="stage-strip" id="stageStrip" hidden></div>
+          <form class="composer" id="chatForm">
+            <textarea id="messageInput" rows="1" placeholder="输入你的法律问题, 例如: 公司拖欠工资三个月, 我可以离职并要求补偿吗?"></textarea>
+            <button id="sendButton" class="send-button" type="submit" title="发送">
+              <span aria-hidden="true">↑</span>
+            </button>
+          </form>
+          <p class="composer-note">建议避免输入身份证号、完整手机号等敏感信息；如需正式意见, 请咨询律师。</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
+

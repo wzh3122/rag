@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: legal-rag-postgres
+    environment:
+      POSTGRES_USER: legal_user
+      POSTGRES_PASSWORD: change_me
+      POSTGRES_DB: legal_agent_rag
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: legal-rag-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  opensearch:
+    image: opensearchproject/opensearch:2
+    container_name: legal-rag-opensearch
+    environment:
+      discovery.type: single-node
+      plugins.security.disabled: "true"
+      OPENSEARCH_INITIAL_ADMIN_PASSWORD: change_me_123A!
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  opensearch_data:
+
