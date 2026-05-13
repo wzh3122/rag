@@ -26,7 +26,7 @@ Python, FastAPI, LangGraph, SQLAlchemy, SQLite/PostgreSQL, pydantic-settings, ht
 ## 安装
 
 ```bash
-cd C:\Users\wzh\Desktop\rag
+cd
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
@@ -52,13 +52,13 @@ uvicorn app.main:app --reload
 打开前端对话界面:
 
 ```text
-http://127.0.0.1:8000/
+
 ```
 
 健康检查:
 
 ```bash
-curl http://127.0.0.1:8000/health
+
 ```
 
 ## API 示例
